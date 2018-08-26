@@ -47,7 +47,7 @@ for (idr in 1:nrow(cif_df_12)) {
   for(index in 1 : (predicion_horizon-1) ){
     if(index ==1){
       time_seres <- y_series[1:((train_length+(index-1)))]
-      ets_model_12 = baggedETS(ts(time_seres, frequency = 12))
+      ets_model_12 = baggedETS(ts(time_seres, frequency = 6))
       ets_forecast = forecast(ets_model_12, h= 6)
       ets_predict = as.numeric(ets_forecast$mean)
       ets_predict = ets_predict[1:(predicion_horizon-index)]
@@ -59,7 +59,7 @@ for (idr in 1:nrow(cif_df_12)) {
     }else{
       time_seres <- y_series[1:((train_length+(index-1)))]
       #ets_model = ets(ts(time_seres, frequency = 12), model = ets_model_12, use.initial.values = TRUE)
-      ets_model = baggedETS(ts(time_seres, frequency = 12))
+      ets_model = baggedETS(ts(time_seres, frequency = 6))
       ets_forecast = forecast(ets_model, h= 6)
       ets_predict = as.numeric(ets_forecast$mean)
       ets_predict = ets_predict[1:(predicion_horizon-index)]
